@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Excel Avancé — TECHXPERT</title>
+<title>Excel Avancé — Leçon TECHXPERT</title>
 <meta name="description" content="Leçon Excel avancé : base de données, mise en forme conditionnelle, consolidation et tableaux croisés dynamiques, avec démonstrations interactives.">
 <link rel="icon" href="logo.png">
 <style>
@@ -109,6 +109,7 @@ body.tl .prog,body.tl #menu{display:none}
 /* ===== Polish pro ===== */
 .ltab{max-width:880px;padding:18px 20px 70px}
 .ltab h1.lt{font-size:1.6rem;line-height:1.25;margin:10px 0 10px;color:var(--tx);letter-spacing:-.01em}
+.ltab .lead{font-size:1.02rem;color:var(--mu);margin:0 0 14px;padding:14px 18px;background:var(--pn);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;box-shadow:var(--sh)}
 .ltoc{position:sticky;top:var(--hh,100px);z-index:40;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -20px 10px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd);scrollbar-width:none}
 .ltoc::-webkit-scrollbar{display:none}
 .ltoc a{flex:none;font-weight:600;font-size:.84rem;padding:7px 14px;border:1px solid transparent;transition:.15s}
@@ -118,6 +119,8 @@ body.tl .prog,body.tl #menu{display:none}
 .ltab h2 .nb{flex:none;width:34px;height:34px;border-radius:10px;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:1rem}
 .ltab section{scroll-margin-top:calc(var(--hh,100px) + 60px)}
 html{scroll-padding-top:calc(var(--hh,100px) + 66px)}
+.ltab .lc{background:var(--pn);border:1px solid var(--bd);border-radius:14px;padding:6px 20px 16px;margin:14px 0;box-shadow:var(--sh)}
+.ltab .lc h3{font-size:1.08rem;color:var(--ac2);margin:14px 0 8px;padding-bottom:6px;border-bottom:1px dashed var(--bd)}
 .ltab .llb{color:var(--ac);font-weight:700}
 .ltab .lch{background:var(--ch);padding:8px 12px;border-radius:8px}
 .ltab .lex{background:var(--hi);border-left:4px solid var(--ac);border-radius:0 10px 10px 0;padding:8px 14px;margin:10px 0}
@@ -143,8 +146,22 @@ header.top{box-shadow:0 4px 18px rgba(0,0,0,.28)}
 #t-pratique{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2h6v2l-1 1v5l5.5 9a2 2 0 0 1-1.7 3H6.2a2 2 0 0 1-1.7-3L10 10V5L9 4z'/%3E%3C/svg%3E")}
 .tabs button:hover{background:rgba(255,255,255,.14);color:#fff}
 .tabs button[aria-selected=true]{background:#fff;color:#14566b;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-header.top{padding-bottom:5px}
+header.top{padding-bottom:10px}
 @media(max-width:620px){.tabs{flex-basis:100%;justify-content:center;margin:2px 0 0}.tabs button{flex:1;justify-content:center;padding:8px 10px}}
+
+.rx{position:relative;display:inline-flex;align-items:center;gap:6px;flex:none;color:#fff}
+.rx .rxt{font-size:.78rem;opacity:.85;margin-right:2px;white-space:nowrap}
+.rx .rxb{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.84rem;font-weight:700;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:5px 11px;cursor:pointer;line-height:1;transition:background .15s,border-color .15s}
+.rx .rxb svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.rx .rxb:hover:not([disabled]){background:rgba(255,255,255,.3);border-color:#fff}
+.rx .rxb[disabled]{cursor:default}
+.rx .rxb.on{background:#fff;border-color:#fff;color:#14566b}
+.rx .rxb.on svg{fill:currentColor}
+.rx .rxm{position:absolute;right:0;top:calc(100% + 10px);z-index:50;background:var(--pn,#fff);color:var(--tx,#17222f);border:1px solid var(--bd,#d9e0e8);border-radius:10px;padding:8px 12px;font-size:.82rem;font-weight:600;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;visibility:hidden;transition:opacity .2s}
+.rx .rxm.show{opacity:1;visibility:visible}
+@media(max-width:900px){.rx .rxt{display:none}}
+@media(max-width:560px){.rx{gap:4px}.rx .rxb{padding:5px 8px;gap:4px;font-size:.78rem}.rx .rxb svg{width:14px;height:14px}}
+@media print{.rx{display:none}}
 </style>
 </head>
 <body>
@@ -152,9 +169,13 @@ header.top{padding-bottom:5px}
  <button class="hb" id="menu" aria-label="Sommaire">☰</button>
  <img id="lg" src="logo.png" alt="TECHXPERT">
  <h1>Excel Avancé<small>Leçon TECHXPERT · à consulter et à refaire chez soi</small></h1>
- <span class="sp"></span>
+ <span class="sp"></span><div class="rx" id="rx" data-key="excel-avance"><span class="rxt">Cette page vous est utile ?</span>
+<button type="button" class="rxb" data-v="up" aria-label="J'aime cette page" title="J'aime"><svg viewBox="0 0 24 24"><path d="M7 11v9H4v-9zM7 11l4-8a2 2 0 0 1 2 2v4h6a2 2 0 0 1 2 2.3l-1.3 7a2 2 0 0 1-2 1.7H7"/></svg><b class="n">–</b></button>
+<button type="button" class="rxb" data-v="down" aria-label="Je n'aime pas cette page" title="Je n'aime pas"><svg viewBox="0 0 24 24"><path d="M17 13V4h3v9zM17 13l-4 8a2 2 0 0 1-2-2v-4H5a2 2 0 0 1-2-2.3l1.3-7A2 2 0 0 1 6.3 5H17"/></svg><b class="n">–</b></button>
+<span class="rxm" role="status" aria-live="polite"></span></div>
+
  <div class="prog"><b id="pt">0 / 0 manipulations faites</b><div class="bar"><i id="pb"></i></div></div>
- <button class="hb t" id="bp">Imprimer</button>
+ <button class="hb t" id="bp">🖨 Imprimer</button>
  <button class="hb" id="bt" aria-label="Thème">🌓</button>
  <div class="tabs" role="tablist"><button role="tab" id="t-lecon" aria-selected="true" data-tab="lecon">Leçon</button><button role="tab" id="t-pratique" aria-selected="false" data-tab="pratique">Pratique</button></div>
 </header>
@@ -329,7 +350,7 @@ header.top{padding-bottom:5px}
   <div><b>3 · Refaire chez soi</b>Copiez le jeu d'exemples dans Excel, faites la manipulation, puis cochez-la.</div>
  </div>
  <section class="data" id="jeu">
-  <h3>Jeu d'exemples pour s'entraîner à la maison</h3>
+  <h3>📥 Jeu d'exemples pour s'entraîner à la maison</h3>
   <div class="mini">Tableau « Ventes » : 24 lignes avec les colonnes <b>Dates</b>, <b>Magasins</b> et <b>CA</b> (chiffre d'affaires). Collez-le dans Excel en A1, ou ouvrez le fichier CSV.</div>
   <div class="btns"><button class="btn pri" id="bcopy">📋 Copier le tableau (à coller dans Excel)</button><button class="btn" id="bcsv">⬇ Télécharger en CSV</button><button class="btn" id="bshow">👁 Voir le tableau</button></div>
   <div class="sc hide" id="jshow" style="margin-top:10px"></div><div class="msg hide" id="jmsg"></div>
@@ -393,7 +414,7 @@ function card(x,i){
  if(x.ex)h+=`<div class="row"><b>Exemple</b><div>${x.ex.map(e=>Array.isArray(e)?`<ul>${e.map(l=>`<li>${l}</li>`).join('')}</ul>`:`<p>${e}</p>`).join('')}</div></div>`;
  if(x.r)h+=`<div class="row"><b>Résultat</b><div><div class="call ok" style="margin:0">${x.r}</div></div></div>`;
  if(x.notes)x.notes.forEach(n=>h+=`<div class="call"><b>⚠ ${n[0]} :</b>${n[1]}</div>`);
- if(x.demo)h+=`<details class="demo" open><summary>Démonstration interactive</summary><div class="dm" data-demo="${x.demo}"></div></details>`;
+ if(x.demo)h+=`<details class="demo" open><summary>🧪 Démonstration interactive</summary><div class="dm" data-demo="${x.demo}"></div></details>`;
  if(x.lab)h+=`<div class="btns"><button class="btn pri" data-lab="${x.lab}">▶ Tester dans le laboratoire ↑</button></div>`;
  h+=`<div class="tp"><label><input type="checkbox" data-done="${x.id}" ${DONE[x.id]?'checked':''}><span><b>À refaire chez vous :</b> ${esc(x.tp)} <span class="mini">— cochez quand c'est fait.</span></span></label></div></article>`;
  return h}
@@ -403,7 +424,7 @@ function build(){
   nav+=`<h3>${ci+1}. ${esc(c.t)}</h3>`;
   chs+=`<section class="ch" id="c-${ci}"><header><div class="no">${ci+1}</div><h2>${esc(c.t)}</h2></header><p class="in">${c.in}</p>`;
   if(c.path)chs+=`<div class="call ok"><b>Chemin :</b></div>`.replace('</div>',pathHTML(c.path)+'</div>');
-  if(c.lab)chs+=`<div class="card" id="lab"><h3>Laboratoire de mise en forme conditionnelle <span class="tag">démo</span></h3><div class="dm" data-demo="lab"></div></div>`;
+  if(c.lab)chs+=`<div class="card" id="lab"><h3>🧪 Laboratoire de mise en forme conditionnelle <span class="tag">démo</span></h3><div class="dm" data-demo="lab"></div></div>`;
   TP.forEach((x,i)=>{if(x.c==ci){nav+=`<a href="#t-${x.id}" data-id="${x.id}"><span class="ck"></span><span>${esc(x.t)}</span></a>`;chs+=card(x,i)}});
   chs+='</section>'});
  $('#nav').innerHTML=nav;$('#chs').innerHTML=chs;$('#nbT').textContent=TP.length+' manipulations'}
@@ -487,7 +508,7 @@ tcd(el){tcdDemo(el,{})},tcd2(el){tcdDemo(el,{seg:1})},maj(el){tcdDemo(el,{maj:1}
 function tcdDemo(el,o){const M=['Paris','Lyon','Cannes'];let src=RAW.map(x=>x.slice()),snap=src.map(x=>x.slice());let st={row:'Magasins',col:'—',val:'sum',mo1:0,mo2:5,seg:new Set(M),stale:0};if(o.pct)st.val='pct';
  el.innerHTML=`<div class="ctl"><b>Champs :</b> Lignes <select id="r"><option>Magasins</option><option>Mois</option></select> Colonnes <select id="c"><option>—</option><option>Mois</option><option>Magasins</option></select> Valeurs <select id="v"><option value="sum">Somme de CA</option><option value="pct">% du total général</option><option value="pcol">% du total de la colonne</option></select></div>
  ${o.seg?`<div class="ctl"><b>Chronologie :</b> du <select id="m1">${MOIS.map((m,i)=>`<option value="${i}">${m}</option>`).join('')}</select> au <select id="m2">${MOIS.map((m,i)=>`<option value="${i}">${m}</option>`).join('')}</select> <b style="margin-left:12px">Segment :</b> <div class="sl" id="s"></div></div>`:''}
- ${o.maj?`<div class="ctl"><button class="btn" id="ed">Modifier le tableau d'origine (+1 000 € sur une vente de Paris)</button><button class="btn pri" id="rf">Actualiser</button></div>`:''}
+ ${o.maj?`<div class="ctl"><button class="btn" id="ed">✏ Modifier le tableau d'origine (+1 000 € sur une vente de Paris)</button><button class="btn pri" id="rf">🔄 Actualiser</button></div>`:''}
  <div class="sc" id="o" style="max-height:none"></div><div class="msg" id="m"></div>`;
  $('#v',el).value=st.val;if(o.seg){$('#m2',el).value=5}
  const r=()=>{const D=snap.filter(x=>mo(x[0])>=st.mo1&&mo(x[0])<=st.mo2&&st.seg.has(x[1]));const key=(x,f)=>f=='Mois'?MOIS[mo(x[0])]:x[1];
@@ -546,6 +567,27 @@ const f=()=>{b.classList.toggle('on',scrollY>400);const hh=(parseInt(getComputed
  L.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s&&s.getBoundingClientRect().top<hh)cur=a});
  L.forEach(a=>{const on=a===cur;a.classList.toggle('on',on);if(on&&document.getElementById('p-lecon').hidden===false){const c=a.parentNode;c.scrollLeft=a.offsetLeft-20}})};
 addEventListener('scroll',f,{passive:true});f()})();
+
+// Réactions J'aime / Je n'aime pas (compteur partagé via Abacus, sans base de données)
+(function(){
+  var NS='herizo-techxpert-pages',API='https://abacus.jasoncameron.dev';
+  var box=document.getElementById('rx');if(!box)return;
+  var key=box.dataset.key,btn={up:box.querySelector('[data-v=up]'),down:box.querySelector('[data-v=down]')},msg=box.querySelector('.rxm');
+  var LS='rx:'+key,mine=null;try{mine=localStorage.getItem(LS)}catch(e){}
+  function url(a,v){return API+'/'+a+'/'+NS+'/'+key+'-'+v}
+  function fmt(n){return n>=1000?(n/1000).toFixed(n>=10000?0:1).replace('.',',')+' k':String(n)}
+  function setN(v,n){btn[v].querySelector('.n').textContent=(typeof n==='number')?fmt(n):'–'}
+  function to(u,o){var c=window.AbortController?new AbortController():null,t=setTimeout(function(){c&&c.abort()},6000);return fetch(u,Object.assign({signal:c&&c.signal},o||{})).then(function(r){clearTimeout(t);return r})}
+  function load(){['up','down'].forEach(function(v){
+    to(url('get',v)).then(function(r){return r.status===404?{value:0}:r.json()}).then(function(j){setN(v,typeof j.value==='number'?j.value:0)}).catch(function(){setN(v)})})}
+  var tm;function say(t){msg.textContent=t;msg.classList.add('show');clearTimeout(tm);tm=setTimeout(function(){msg.classList.remove('show')},3500)}
+  function lock(f){btn.up.disabled=btn.down.disabled=true;if(mine){btn[mine].classList.add('on');btn[mine].setAttribute('aria-pressed','true');if(f)say('Merci pour votre avis.')}}
+  if(mine)lock();
+  ['up','down'].forEach(function(v){btn[v].addEventListener('click',function(){
+    if(mine)return;mine=v;try{localStorage.setItem(LS,v)}catch(e){}lock(true);
+    to(url('hit',v)).then(function(r){return r.json()}).then(function(j){if(typeof j.value==='number')setN(v,j.value);else load()}).catch(function(){say('Merci pour votre avis (compteur indisponible).')})})});
+  load();
+})();
 </script>
 </body>
 </html>
